@@ -39,4 +39,24 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  @keyframes showFade {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;

@@ -11,7 +11,8 @@ const theme = {
     gray100: '#6F6F6F',
     border: '#494949',
     message: '#889497',
-    myMessage: '#79BDCC'
+    myMessage: '#79BDCC',
+    error: '#f04141',
   }
 };
 

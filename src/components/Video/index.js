@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 export default function Video({ url }) {
   return (
     <VideoContainer>
-      <ReactPlayer url={url} />
+      {url ? <ReactPlayer url={url} /> : <strong>Aguardando um vídeo para a sala</strong>}
     </VideoContainer>
   )
 }

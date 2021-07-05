@@ -1,4 +1,4 @@
-import { darken, lighten } from 'polished';
+import { lighten } from 'polished';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
@@ -6,15 +6,14 @@ export const Container = styled.div`
   justify-content: center;
   padding: 2rem;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 
   > div {
     display: flex;
     height: 100%;
     width: 100%;
     justify-content: space-between;
-    gap: 2rem
   }
 `;
 
@@ -22,16 +21,54 @@ export const VideoSection = styled.section`
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  padding-right: 2rem;
+  transition: 1s;
+  margin-right: ${props => props.isOpen ? '29.5rem' : '0'};
+
+  @media(max-width: 1250px) {
+    margin-right: ${props => props.isOpen ? '22rem' : '0'};
+  }
+
+  @media(max-width: 1000px) {
+    overflow-y: initial;
+    margin-right: 0;
+  }
 
   header {
     margin-bottom:3rem;
 
-    h1 {
-      font-size: 2.5rem;
+    > section {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 1px solid ${props => props.theme.colors.border};
       padding-bottom: 2rem;
       margin-bottom: 2rem;
+      h1 {
+        font-size: 2.5rem;
+      }
+      button {
+        background: ${props => props.theme.colors.primary};
+        border: none;
+        border-radius: .4rem;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        padding: .3rem;
+        transition: .5s;
+        animation: showFade .5s ease-in-out forwards;
+        
+        svg {
+          margin-right: .4rem;
+          width: 1rem;
+          height: 1rem;
+        }
+
+        &:hover {
+          background: ${props => lighten(0.15, props.theme.colors.primary)};
+        }
+      }
     }
 
     > div {
@@ -79,6 +116,79 @@ export const VideoSection = styled.section`
 
         &:hover {
           background: ${props => lighten(0.15, props.theme.colors.primary)};
+        }
+      }
+    }
+
+    @media(max-width: 1250px) {
+      > section {
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        h1 {
+          font-size: 1.5rem;
+        }
+        button {
+          border-radius: .4rem;
+          padding: .3rem;
+          svg {
+            margin-right: .4rem;
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+      }
+
+      > div {
+        > div {
+          svg {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+          p {
+            font-size: 1rem;
+            strong {
+              color: ${props => props.theme.colors.primary};
+            }
+          }
+        }
+
+        button {
+          font-size: .8rem;
+          border-radius: .5rem;
+          padding: .5rem;
+        }
+      }
+    }
+
+    @media(max-width: 600px) {
+      > section {
+        h1 {
+          font-size: 1.2rem;
+        }
+      }
+
+      > div {
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+
+        > div {
+          svg {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+          p {
+            font-size: 1rem;
+            strong {
+              color: ${props => props.theme.colors.primary};
+            }
+          }
+        }
+
+        button {
+          font-size: .8rem;
+          border-radius: .5rem;
+          padding: .5rem;
         }
       }
     }
@@ -144,8 +254,10 @@ export const InputContainer = styled.div`
 export const VideoInfos = styled.section`
   margin-top: 3rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 2.5rem;
 
   h2 {
     font-size: 1.2rem;
