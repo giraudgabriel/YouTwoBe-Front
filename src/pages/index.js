@@ -6,7 +6,6 @@ import { useState } from 'react';
 export default function Home() {
   const [formType, setFormType] = useState('join');
 
-
   const [nickname, setNickname] = useState('');
   const [roomCode, setRoomCode] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
