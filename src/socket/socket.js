@@ -1,22 +1,26 @@
 import { io } from "socket.io-client";
+import store from "../store";
+import { setSocket } from "../actions";
 
 const connect = () => {
   try {
-    if (localStorage.getItem("socket") == null) {
-      const socket = io("http://localhost:3001", {
+    const { getState, dispatch } = store;
+    const { socket } = getState().socket;
+
+    if (socket == null) {
+      const socketIo = io("http://localhost:3001", {
         transports: ["websocket"],
         upgrade: false,
       });
 
-      console.log("here", socket);
-      localStorage.setItem("socket", socket);
+      dispatch(setSocket(socketIo));
 
-      socket.on("connect", () => {
-        localStorage.setItem("socket", socket);
+      socketIo.on("connect", () => {
+        dispatch(setSocket(socketIo));
       });
 
-      socket.on("disconnect", () => {
-        localStorage.removeItem("socket");
+      socketIo.on("disconnect", () => {
+        dispatch(setSocket(null));
       });
     }
   } catch (error) {
