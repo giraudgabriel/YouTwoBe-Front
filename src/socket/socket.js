@@ -22,6 +22,10 @@ const connect = () => {
       socketIo.on("disconnect", () => {
         dispatch(setSocket(null));
       });
+
+      socketIo.on("roomUpdate", (data) => {
+        console.log(data);
+      });
     }
   } catch (error) {
     console.error(error);
