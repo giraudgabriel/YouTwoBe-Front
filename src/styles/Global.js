@@ -6,6 +6,24 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: none;
+    
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      transition:.3s;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.colors.primary};
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+      background: ${({ theme }) => theme.colors.primary};
+    }
+    ::-webkit-scrollbar-track{
+      background: #FFF;
+      border-radius: 10px;
+    }
+
   }
   body {
     background: ${props => props.theme.colors.background};
