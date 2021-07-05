@@ -21,4 +21,12 @@ export const VideoContainer = styled.section`
 
     animation: fade .5s ease-in-out forwards;
   }
+
+  @media(max-width: 600px) {
+    height: 20rem;
+
+    > div {
+      height: 20rem !important;
+    }
+  }
 `;

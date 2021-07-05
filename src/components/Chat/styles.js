@@ -23,8 +23,14 @@ export const ChatContainer = styled.section`
     box-shadow: -11px 0px 22px -2px rgba(0,0,0,0.28);
   }
 
+  @media(max-width: 600px) {
+    width: 18rem;
+    right: 1rem;
+  }
+
   header {
     text-align: center;
+    flex-wrap: wrap;
     width: 100%;
     border-bottom: 1px solid ${props => props.theme.colors.border};
     padding-bottom: 1rem;
@@ -32,6 +38,12 @@ export const ChatContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media(max-width: 600px)  {
+      justify-content: center;
+      flex-direction: column;
+      gap: .5rem;
+    }
 
     strong {
       text-transform: uppercase;

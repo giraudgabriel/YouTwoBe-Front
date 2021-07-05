@@ -15,6 +15,10 @@ export const Container = styled.div`
     width: 100%;
     justify-content: space-between;
   }
+
+  @media(max-width: 600px) {
+    padding: 1rem;
+  }
 `;
 
 export const VideoSection = styled.section`
@@ -249,6 +253,26 @@ export const InputContainer = styled.div`
       left: 0;
     `}
   }
+
+  @media(max-width: 600px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+      padding: .8rem;
+      font-size: .9rem
+    }
+
+    button {
+      font-size: .8rem;
+      padding: 0 .8rem;
+    }
+
+    label {
+      font-size: .8rem;
+      bottom: 18px;
+    }
+  }
 `;
 
 export const VideoInfos = styled.section`
@@ -257,7 +281,7 @@ export const VideoInfos = styled.section`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 2.5rem;
+  gap: 3rem;
 
   h2 {
     font-size: 1.2rem;
