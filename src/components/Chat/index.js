@@ -24,6 +24,7 @@ export default function Chat() {
       setMessages((prev) => [...prev, data]);
       document.getElementById("messages").scrollTop =
         document.getElementById("messages").scrollHeight;
+      dispatch(toggleChat(true));
     });
     return () => {
       hub?.off("msg");

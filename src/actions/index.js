@@ -1,4 +1,4 @@
-import { SET_SOCKET, TOGGLE_CHAT, SET_ROOM } from "./types";
+import { SET_SOCKET, TOGGLE_CHAT, SET_ROOM, SET_NAME } from "./types";
 import Router from "next/router";
 
 export const setSocket = (socket) => async (dispatch) => {
@@ -16,4 +16,8 @@ export const setRoom = (room) => async (dispatch, getState) => {
   if (shouldChangeRoute) {
     Router.push("/room/" + room.id);
   }
+};
+
+export const setName = (name) => async (dispatch) => {
+  dispatch({ type: SET_NAME, payload: name });
 };

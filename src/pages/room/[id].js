@@ -21,36 +21,19 @@ import RoomService from "../../services/RoomService";
 export default function Room() {
   const router = useRouter();
   const { id } = router.query;
-  const [videoUrl, setVideoUrl] = useState(
-    "https://www.youtube.com/watch?v=5qap5aO4i9A"
-  );
-  const [currentVideoUrl, setCurrentVideoUrl] = useState(
-    "https://www.youtube.com/watch?v=5qap5aO4i9A"
-  );
 
   const { dispatch } = store;
 
-  function setVideo() {
-    setCurrentVideoUrl(setVideoUrl);
-  }
-
   const { layout, socket } = useSelector((state) => state);
 
-  const hub = socket?.socket;
+  const [videoUrl, setVideoUrl] = useState("");
 
   useEffect(() => {
-    if (id == undefined && socket.room == undefined) {
+    if (id == undefined && socket.room == undefined && socket.name == undefined) {
       router.push("/");
     } else {
-      RoomService.joinRoom("Usuário", id);
+      RoomService.joinRoom(socket.name, id);
     }
-    hub?.on("msg", (data) => {
-      console.log(data);
-    });
-    return () => {
-      hub?.off("msg");
-      dispatch(setRoom(undefined));
-    };
   }, []);
 
   function handleOpenChat() {
@@ -62,6 +45,13 @@ export default function Room() {
     toast.success(
       "O código da sala foi copiado para sua área de transferência!"
     );
+  }
+
+  function setVideo() {
+    if (videoUrl) {
+      RoomService.setUrl(videoUrl);
+      setVideoUrl("");
+    }
   }
 
   return (
@@ -97,7 +87,7 @@ export default function Room() {
             </div>
           </header>
 
-          <Video url={currentVideoUrl} />
+          <Video url={videoUrl} />
 
           <VideoInfos>
             <h2>
