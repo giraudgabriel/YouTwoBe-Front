@@ -8,9 +8,9 @@ import Logo from "../assets/logo.svg";
 import Illustration from "../assets/illustration.svg";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import RoomService from "../services/RoomService";
 
 export default function Home() {
-  const { socket } = useSelector((state) => state.socket);
 
   const [formType, setFormType] = useState("join");
 
@@ -20,14 +20,12 @@ export default function Home() {
 
   const handleCreateRoom = async (e) => {
     e.preventDefault();
-    if (nickname && roomCode)
-      socket?.emit("createRoom", { name: nickname, roomName: roomCode });
+    if (nickname && roomCode) RoomService.createRoom(nickname, roomCode);
   };
 
   const handleJoinRoom = async (e) => {
     e.preventDefault();
-    if (nickname && roomCode)
-      socket?.emit("joinRoom", { name: nickname, roomName: roomCode });
+    if (nickname && roomCode) RoomService.joinRoom(nickname, roomCode);
   };
 
   return (

@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import store from "../store";
-import { setSocket } from "../actions";
+import { setSocket, setRoom } from "../actions";
 
 const connect = () => {
   try {
@@ -24,7 +24,7 @@ const connect = () => {
       });
 
       socketIo.on("roomUpdate", (data) => {
-        console.log(data);
+        dispatch(setRoom(data));
       });
     }
   } catch (error) {

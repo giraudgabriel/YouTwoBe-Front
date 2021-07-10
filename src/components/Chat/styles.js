@@ -107,7 +107,7 @@ export const MessageContent = styled.div`
   }
 `;
 
-export const MessageInput = styled.div`
+export const MessageInput = styled.form`
   width: 100%;
   justify-self: flex-end;
   display: flex;
